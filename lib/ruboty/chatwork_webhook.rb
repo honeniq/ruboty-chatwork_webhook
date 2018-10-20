@@ -1,7 +1,3 @@
 require "ruboty/chatwork_webhook/version"
+require "ruboty/adapters/chatwork_webhook"
 
-module Ruboty
-  module ChatworkWebhook
-    # Your code goes here...
-  end
-end
