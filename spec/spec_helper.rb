@@ -1,5 +1,7 @@
 require "bundler/setup"
+require "ruboty"
 require "ruboty/chatwork_webhook"
+require "model/mention"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
