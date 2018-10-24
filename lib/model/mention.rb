@@ -8,4 +8,8 @@ class Mention
   def body
     return @json['webhook_event']['body']
   end
+
+  def from
+    return @json['webhook_event']['from_account_id']
+  end
 end

@@ -21,10 +21,16 @@ RSpec.describe Mention do
     Mention.new(webhook_body)
   end
 
-  it "returns message body" do
-    expect(mention.body).to eq("Hello.")
+  describe "#body" do
+    it "returns message body" do
+      expect(mention.body).to eq("Hello.")
+    end
   end
 
 
-
+  describe "#from" do
+    it "returns from_account_id" do
+      expect(mention.from).to eq(123456)
+    end
+  end
 end
