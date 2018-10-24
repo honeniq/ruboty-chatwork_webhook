@@ -27,21 +27,21 @@ RSpec.describe Mention do
     end
   end
 
-  describe "#from" do
+  describe "#from_account_id" do
     it "returns from_account_id" do
-      expect(mention.from).to eq(123456)
+      expect(mention.from_account_id).to eq(123456)
     end
   end
 
-  describe "#to" do
+  describe "#to_account_id" do
     it "returns to_account_id" do
-      expect(mention.to).to eq(1484814)
+      expect(mention.to_account_id).to eq(1484814)
     end
   end
 
-  describe "#room" do
+  describe "#room_id" do
     it "returns room_id" do
-      expect(mention.room).to eq(567890123)
+      expect(mention.room_id).to eq(567890123)
     end
   end
 
