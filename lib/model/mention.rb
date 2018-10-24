@@ -12,4 +12,12 @@ class Mention
   def from
     return @json['webhook_event']['from_account_id']
   end
+
+  def to
+    return @json['webhook_event']['to_account_id']
+  end
+
+  def room
+    return @json['webhook_event']['room_id']
+  end
 end
