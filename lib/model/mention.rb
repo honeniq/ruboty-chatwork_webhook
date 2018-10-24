@@ -20,4 +20,8 @@ class Mention
   def room
     return @json['webhook_event']['room_id']
   end
+
+  def message_id
+    return @json['webhook_event']['message_id']
+  end
 end

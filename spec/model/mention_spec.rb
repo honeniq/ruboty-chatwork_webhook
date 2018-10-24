@@ -44,4 +44,11 @@ RSpec.describe Mention do
       expect(mention.room).to eq(567890123)
     end
   end
+
+  describe "#message_id" do
+    it "returns message_id" do
+      expect(mention.message_id).to eq("789012345")
+    end
+  end
+
 end
