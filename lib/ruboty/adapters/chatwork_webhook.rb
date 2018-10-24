@@ -1,17 +1,18 @@
 require 'webrick'
 require 'chatwork'
+require 'json'
+require 'model/mention'
 
 module Ruboty
   module Adapters
     class ChatworkWebhook < Base
       include Mem
       env :CHATWORK_API_TOKEN, "Chatwork API Token"
-      env :CHATWORK_ROOM,      "Chatwork Room ID"
+      env :WEBHOOK_LISTEN_PORT, "Port number for webhook"
       
       def initialize(*args)
         super
         server
-        pp 'start!'
       end
 
       def run
@@ -19,7 +20,8 @@ module Ruboty
       end
 
       def say(message)
-        ChatWork::Message.create(room_id: ENV['CHATWORK_ROOM'], body: "Hello, ChatWork!")
+        ChatWork::Message.create(room_id: message[:original][:room_id],
+                                 body: message[:body])
       end
 
       private
@@ -29,18 +31,19 @@ module Ruboty
 
       def server
         server = WEBrick::HTTPServer.new({
-          BindAddress:    '127.0.0.1',
-          Port:           3000,
+          Port:           ENV['WEBHOOK_LISTEN_PORT'],
         })
         server.mount_proc '/test' do |req, res|
-          body = req.body
-          robot.receive(body: body)
-          pp 'aaaa'
+          mention = Mention.new(req.body)
+          pp 'received-> ' + mention.body
+          robot.receive(body: mention.body,
+                        from_id: mention.from_account_id,
+                        room_id: mention.room_id,
+                        mention: mention)
         end
         server
       end
       memoize :server
-
     end
   end
 end
