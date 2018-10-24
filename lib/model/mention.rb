@@ -6,7 +6,9 @@ class Mention
   end
 
   def body
-    return @json['webhook_event']['body']
+    text = @json['webhook_event']['body']
+    pattern = /^\[To:[0-9]*\].*\R/  # [To:123456] Rubotyさん
+    return text.sub(pattern, '')
   end
 
   def from_account_id
