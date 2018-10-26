@@ -33,7 +33,7 @@ module Ruboty
         server = WEBrick::HTTPServer.new({
           Port:           ENV['WEBHOOK_LISTEN_PORT'],
         })
-        server.mount_proc '/test' do |req, res|
+        server.mount_proc '/' do |req, res|
           mention = Mention.new(req.body)
           pp 'received-> ' + mention.body
           robot.receive(body: mention.body,
